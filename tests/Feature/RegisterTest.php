@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
+use Faker\Generator as Faker;
 
 class RegisterTest extends TestCase
 {
@@ -37,9 +39,9 @@ class RegisterTest extends TestCase
                     'id',
                     'name',
                     'email',
-                    'api_token',
                     'created_at',
                     'updated_at',
+                    'api_token',
                 ],
         ]);
     }

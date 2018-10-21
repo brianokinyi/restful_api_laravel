@@ -5,6 +5,8 @@ namespace Tests\Feature\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
+use Faker\Generator as Faker;
 
 class LoginTest extends TestCase
 {
@@ -44,9 +46,9 @@ class LoginTest extends TestCase
                     'id',
                     'name',
                     'email',
-                    'api_token',
                     'created_at',
                     'updated_at',
+                    'api_token',
                 ],
             ]);
     }
