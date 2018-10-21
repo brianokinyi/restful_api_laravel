@@ -6,6 +6,8 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Auth\AuthenticationException;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -61,7 +63,7 @@ class Handler extends ExceptionHandler
     /**
      * Use middleware to restrict access
      */
-    public function unauthenticated(Request $request) {
+    public function unauthenticated($request, AuthenticationException $exception) {
         return response()->json([
             'error' => 'Unauthenticated'
         ], 401);
