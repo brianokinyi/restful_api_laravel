@@ -34,7 +34,8 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        return Article::create($request->all());
+        $article = Article::create($request->all());
+        return response()->json($article, 201);
     }
 
     /**
@@ -43,9 +44,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        return Article::find($id);
+        return $article;
     }
 
     /**
@@ -66,11 +67,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        $article = Article::findOrFail($id);
         $article->update($request->all());
-        return $article;
+        return response()->json($article, 200);
     }
 
     /**
@@ -79,9 +79,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        Article::find($id)->delete();
-        return 204;
+        $article->delete();
+        return response()->json(null, 204);
     }
 }
