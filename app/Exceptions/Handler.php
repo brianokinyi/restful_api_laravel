@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Auth;
 
 class Handler extends ExceptionHandler
 {
@@ -55,5 +56,14 @@ class Handler extends ExceptionHandler
         }
 
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Use middleware to restrict access
+     */
+    public function unauthenticated(Request $request) {
+        return response()->json([
+            'error' => 'Unauthenticated'
+        ], 401);
     }
 }
